@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <!-- 圖片網址設定：只要把引號內的文字換成你的圖片網址即可。網址必須以 https:// 開頭。 -->
   <script>
-    const XINLI_LOGO_URL = "請貼上你的 Logo 圖片網址";
+    const XINLI_LOGO_URL = "https://cdn.phototourl.com/free/2026-09-04-f29c717a-4034-4652-822c-b8955c28b303.jpg";
     const XINLI_AD_IMAGE_URL = "請貼上你的廣告圖片網址";
   </script>
   <style>
@@ -25,10 +25,11 @@
     a { color:inherit; }
     .wrap { width:min(1160px, calc(100% - 40px)); margin:auto; }
     .topbar { display:flex; align-items:center; justify-content:space-between; padding:22px 0; font-size:13px; letter-spacing:.08em; }
-    .brand { display:flex; align-items:center; gap:12px; text-decoration:none; font-weight:800; letter-spacing:.12em; }
-    .brand-mark { width:36px; height:36px; display:grid; place-items:center; overflow:hidden; color:#fff; background:var(--sage); border-radius:50% 50% 8px 50%; font-family:"Playfair Display",serif; font-size:18px; transform:rotate(-10deg); }
-    .brand-mark img { width:100%; height:100%; object-fit:contain; transform:rotate(10deg); }
-    .brand span:last-child { padding-top:2px; }
+    .brand { display:flex; align-items:center; gap:14px; text-decoration:none; font-weight:800; letter-spacing:.12em; }
+    .brand-mark { width:52px; height:52px; flex:0 0 52px; display:grid; place-items:center; overflow:hidden; color:#fff; background:var(--paper); border:1px solid rgba(23,34,31,.12); border-radius:14px; box-shadow:0 8px 18px rgba(39,76,67,.12); font-family:"Playfair Display",serif; font-size:18px; }
+    .brand-mark img { width:100%; height:100%; object-fit:cover; transform:none; }
+    .brand > span:last-child { padding-top:2px; }
+    .brand-mark img[hidden] + span { display:block; }
     .nav-note { color:var(--muted); }
     .hero { min-height:680px; display:grid; grid-template-columns:1.04fr .96fr; align-items:center; gap:72px; padding:54px 0 82px; }
     .eyebrow { display:inline-flex; gap:10px; align-items:center; color:var(--gold); font-size:13px; font-weight:800; letter-spacing:.16em; }
