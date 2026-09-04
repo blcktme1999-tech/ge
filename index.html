@@ -12,6 +12,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- 圖片網址設定：只要把引號內的文字換成你的圖片網址即可。網址必須以 https:// 開頭。 -->
+  <script>
+    const XINLI_LOGO_URL = "請貼上你的 Logo 圖片網址";
+    const XINLI_AD_IMAGE_URL = "請貼上你的廣告圖片網址";
+  </script>
   <style>
     :root { --ink:#17221f; --muted:#5d6a65; --cream:#f5f0e8; --paper:#fffdf9; --sage:#274c43; --mint:#dce8df; --gold:#bb8650; --line:#06c755; --line-dark:#049a42; --border:rgba(23,34,31,.12); }
     * { box-sizing:border-box; }
@@ -21,7 +26,8 @@
     .wrap { width:min(1160px, calc(100% - 40px)); margin:auto; }
     .topbar { display:flex; align-items:center; justify-content:space-between; padding:22px 0; font-size:13px; letter-spacing:.08em; }
     .brand { display:flex; align-items:center; gap:12px; text-decoration:none; font-weight:800; letter-spacing:.12em; }
-    .brand-mark { width:36px; height:36px; display:grid; place-items:center; color:#fff; background:var(--sage); border-radius:50% 50% 8px 50%; font-family:"Playfair Display",serif; font-size:18px; transform:rotate(-10deg); }
+    .brand-mark { width:36px; height:36px; display:grid; place-items:center; overflow:hidden; color:#fff; background:var(--sage); border-radius:50% 50% 8px 50%; font-family:"Playfair Display",serif; font-size:18px; transform:rotate(-10deg); }
+    .brand-mark img { width:100%; height:100%; object-fit:contain; transform:rotate(10deg); }
     .brand span:last-child { padding-top:2px; }
     .nav-note { color:var(--muted); }
     .hero { min-height:680px; display:grid; grid-template-columns:1.04fr .96fr; align-items:center; gap:72px; padding:54px 0 82px; }
@@ -43,10 +49,13 @@
     .visual-copy { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:48px; color:#fff; z-index:1; }
     .visual-kicker { font-size:12px; letter-spacing:.2em; opacity:.72; }
     .visual-title { margin-top:12px; font-family:"Playfair Display", serif; font-size:clamp(42px, 6vw, 68px); line-height:.98; letter-spacing:-.04em; }
-    .orb { position:absolute; width:112px; height:112px; top:136px; left:50%; transform:translateX(-50%) rotate(-10deg); display:grid; place-items:center; border-radius:50% 50% 20px 50%; background:var(--paper); color:var(--sage); box-shadow:0 18px 38px rgba(0,0,0,.2); font-family:"Playfair Display",serif; font-size:42px; font-weight:700; letter-spacing:-.08em; }
+    .orb { position:absolute; width:112px; height:112px; top:136px; left:50%; transform:translateX(-50%) rotate(-10deg); display:grid; place-items:center; overflow:hidden; border-radius:50% 50% 20px 50%; background:var(--paper); color:var(--sage); box-shadow:0 18px 38px rgba(0,0,0,.2); font-family:"Playfair Display",serif; font-size:42px; font-weight:700; letter-spacing:-.08em; }
+    .orb img { width:100%; height:100%; padding:14px; object-fit:contain; transform:rotate(10deg); }
     .orb::before { content:"昕秝"; transform:rotate(10deg); }
-    .orb::after { content:""; position:absolute; inset:-10px; border:1px solid rgba(255,255,255,.45); border-radius:50% 50% 20px 50%; }
+    .orb.has-logo::before { display:none; }
+    .orb::after { content:""; position:absolute; inset:-10px; border:1px solid rgba(255,255,255,.45); border-radius:50% 50% 20px 50%; pointer-events:none; }
     .visual .stamp { top:208px; right:28px; }
+    .visual-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.28; mix-blend-mode:screen; }
     .stamp { position:absolute; top:246px; right:22px; width:91px; height:91px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.55); color:#fff; border-radius:50%; font-size:10px; line-height:1.2; text-align:center; transform:rotate(12deg); letter-spacing:.1em; }
     .section { padding:92px 0; }
     .section-head { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:40px; }
@@ -87,7 +96,7 @@
 </head>
 <body>
   <header class="wrap topbar">
-    <a class="brand" href="#top" aria-label="昕秝開發行銷首頁"><span class="brand-mark">昕</span><span>昕秝開發行銷</span></a>
+    <a class="brand" href="#top" aria-label="昕秝開發行銷首頁"><span class="brand-mark"><img id="header-logo" alt="昕秝開發行銷 Logo" hidden /><span>昕</span></span><span>昕秝開發行銷</span></a>
     <span class="nav-note">INTERNATIONAL SOURCING · 2026</span>
   </header>
 
@@ -101,7 +110,8 @@
         <div class="hero-meta"><div><strong>歐美・日韓</strong>專櫃連線</div><div><strong>一對一</strong>專人諮詢</div></div>
       </div>
       <div class="visual" role="img" aria-label="昕秝跨國選品採購視覺：從世界各地精選好物">
-        <div class="orb"></div><div class="stamp">SOURCE<br>WITH<br>CARE</div>
+        <img id="ad-image" class="visual-photo" alt="昕秝跨國選品採購廣告圖片" hidden />
+        <div class="orb"><img id="hero-logo" alt="昕秝開發行銷 Logo" hidden /></div><div class="stamp">SOURCE<br>WITH<br>CARE</div>
         <div class="visual-copy"><span class="visual-kicker">昕秝開發行銷有限公司</span><span class="visual-title">Selected<br>Worldwide.</span></div>
       </div>
     </section>
@@ -133,5 +143,19 @@
   </main>
 
   <footer><div class="wrap footer-row"><div>© 2026 昕秝開發行銷有限公司</div><div>跨國選品採購｜透明合規｜專人諮詢</div></div></footer>
+  <script>
+    // 填入網址後，Logo 與廣告圖片會自動出現在頁面中；留白時保留文字版備援。
+    function setImage(id, url, parentClass) {
+      if (!url || !url.startsWith("http")) return;
+      const image = document.getElementById(id);
+      if (!image) return;
+      image.src = url;
+      image.hidden = false;
+      if (parentClass) image.parentElement.classList.add(parentClass);
+    }
+    setImage("header-logo", XINLI_LOGO_URL);
+    setImage("hero-logo", XINLI_LOGO_URL, "has-logo");
+    setImage("ad-image", XINLI_AD_IMAGE_URL);
+  </script>
 </body>
 </html>
